@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Math Finder</title>
+
+<script src="https://kit.fontawesome.com/bab7e9c9f4.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="Representstyle.css">
+<link rel="shortcut icon" href="ogomm.png" type="image/jpeg" />
+
+
+<style>
+
+
+</style>
+</head>
+<body>
+<!--hedar & logo-->
+  <div class="container">
+      <div class="header-container">
+       <header> 
+         <h3 class="logo">Math Finder </h3> 
+         <img src="ogomm.png" alt="Logo" width="90" height="90">
+       </header>
+       
+      </div> 
+   <div>
+
+<!--navbar-->
+     <div class="navbar">
+      
+      <a href="index.html"><i class=" fa fa-fw fa-home"></i> الرئيسية</a> 
+      <a class="active" href="Represent.html">تمثيل الدوال</a>
+      <a href="Educat.html">تعلم المزيد عن كتابة المعادلات</a>
+      <a href="About.html">من نحن</a>
+      <a href="contact1.html">تواصل معنا</a>
+
+
+ 
+ </div>
+ </div>  
+</div>
+
+
+<!--Page content-->
+           <!-- content1-->
+      
+    <!--end Page content-->
+     <div class="body2">
+
+    <h1  class="font-r" >تمثيل الدوال ومعرفة درجتها</h1>
+    <label  class="font-e" for="function">أدخل المعادلة الرياضية :</label>
+    <input class="rrb"type="text" id="function" name="function" value="x**2" />
+    <br />
+    <button class="bbr" onclick="drawFunction()">تمثيل الدالة</button>
+    <br />
+    <canvas  id="canvas" width="400" height="400" text-align=center;></canvas>
+    <p class="font-e" id="degree"> </p>
+  </div>
+
+ <!-- footer -->
+
+   <div class="footer">
+       
+     <footer class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off">
+  <a href="Represent.html" class="w3-button w3-light-brown"><i class="fa fa-arrow-up w3-margin-right"></i>إنتفل إلى أعلى الصفحة</a>
+  <div class="w3-xlarge w3-section",.footer>
+    <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
+  </div>
+</footer>
+   </div>
+   <!--end Page -->
+
+   <!--script -->
+
+   <script>
+    function degToRad(degrees) {
+      return (degrees * Math.PI) / 180;
+    }
+
+    function getDegree(equation) {
+      const match = equation.match(/x\*\*(\d+)/);
+      return match ? parseInt(match[1]) : 1;
+    }
+
+    function drawFunction() {
+      const equation = document.getElementById("function").value;
+      const canvas = document.getElementById("canvas");
+      const ctx = canvas.getContext("2d");
+      const degree = getDegree(equation);
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      ctx.beginPath();
+      ctx.moveTo(0, canvas.height);
+      for (let x = 0; x <= canvas.width; x++) {
+        const y = eval(equation.replace("x", x));
+        ctx.lineTo(x, canvas.height - y);
+      }
+      ctx.stroke();
+
+      document.getElementById("degree").innerHTML = `Degree: ${degree}`;
+    }
+  </script>
+</body>
+
+</html>
